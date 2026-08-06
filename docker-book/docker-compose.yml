@@ -1,0 +1,218 @@
+services:
+  postgres-author:
+    image: postgres:16
+    container_name: postgres-author
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+      POSTGRES_DB: author
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_author_data:/var/lib/postgresql/data
+      - ./init/author:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U developer -d author"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  postgres-book:
+    image: postgres:16
+    container_name: postgres-book
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+      POSTGRES_DB: book
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_book_data:/var/lib/postgresql/data
+      - ./init/book:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U developer -d book"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.4.7
+    container_name: keycloak
+    command:
+      - start-dev
+      - --import-realm
+    restart: unless-stopped
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USERNAME:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+      KC_DB: dev-file
+    ports:
+      - "7080:8080"
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+      - ./keycloak/import:/opt/keycloak/data/import:ro
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  service-discovery:
+    platform: linux/amd64
+    image: gilvazno/methaphorce-service-discovery:1.0.1
+    container_name: service-discovery
+    restart: unless-stopped
+    environment:
+      SERVER_PORT: 8030
+      EUREKA_INSTANCE_HOSTNAME: service-discovery
+    ports:
+      - "8030:8030"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8030"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+  author-service:
+    platform: linux/amd64
+    image: gilvazno/methaphorce-author:1.0.0
+    container_name: author-service
+    restart: unless-stopped
+    depends_on:
+      postgres-author:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      service-discovery:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8020
+      DATASOURCE_URL: jdbc:postgresql://postgres-author:5432/author
+      USER_DB: developer
+      PASSWORD_DB: developer
+      EUREKA_SERVER_URL: http://service-discovery:8030/eureka/
+      JWK_SET_URI: http://keycloak:8080/realms/books/protocol/openid-connect/certs
+    ports:
+      - "8020:8020"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8020"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  book-service:
+    platform: linux/amd64
+    image: gilvazno/methaphorce-book:1.0.0
+    container_name: book-service
+    restart: unless-stopped
+    depends_on:
+      postgres-book:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      service-discovery:
+        condition: service_healthy
+      author-service:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8010
+      DATASOURCE_URL: jdbc:postgresql://postgres-book:5432/book
+      USER_DB: developer
+      PASSWORD_DB: developer
+      EUREKA_SERVER_URL: http://service-discovery:8030/eureka/
+      JWK_SET_URI: http://keycloak:8080/realms/books/protocol/openid-connect/certs
+    ports:
+      - "8010:8010"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8010"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  gateway:
+    platform: linux/amd64
+    image: gilvazno/methaphorce-gateway:1.0.0
+    container_name: gateway
+    restart: unless-stopped
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      author-service:
+        condition: service_healthy
+      book-service:
+        condition: service_healthy
+    environment:
+      EUREKA_SERVER_URL: http://service-discovery:8030/eureka/
+      URL_FRONT_CLIENT: ${URL_FRONT_CLIENT:-http://localhost:3000}
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    depends_on:
+      service-discovery:
+        condition: service_healthy
+      author-service:
+        condition: service_healthy
+      book-service:
+        condition: service_healthy
+      gateway:
+        condition: service_healthy
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:9090/-/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+
+networks:
+  default:
+    name: methaphorce-network
+
+volumes:
+  keycloak_data:
+  postgres_author_data:
+  postgres_book_data:
+  prometheus_data:
+  grafana_data:

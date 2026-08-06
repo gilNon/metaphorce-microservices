@@ -1,0 +1,417 @@
+{
+  "info": {
+    "_postman_id": "74f022f3-0db3-4cca-ae13-b690f6089741",
+    "name": "BOOK DICTIONARY",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9974032"
+  },
+  "item": [
+    {
+      "name": "BOOK",
+      "item": [
+        {
+          "name": "SAVE BOOK",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU3MzU1ODcsImlhdCI6MTc4NTczMzc4NywianRpIjoidHJydGNjOmIzM2EwOTQ3LTg2YTctMWI1NC1hMTQwLTZhNmRkMTQ4MzRhMSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.WLovnrRVLevTxxWj9Q4VkdQYEABZdIHbKyuHYSi4LLtgv4VkFpqhl4P3vyC7nDRZZi0L3M6eDtbm9zI9QwMv2bI4rC6MqTdn4XtMAc5HX-RgmE-rnBSHn_-55RJla1DmHQwrIesTohXqr_ILCxy5qjcTbbIqSg0FXu2kM_RpxYhUUPh_EJN81zuvIy8iar_kDaqeOTQTO9pCfirjPhLkUE9J3esQyOirFxPe6-skdWVimC5o0yyspm4Y6oC4nCLfvreW9c7E1EkbMo9plSbaQxMDYH3egsqwwCdInVMuvzRAZyPpPHHrV18xnQDleAeRG9Msh5ixXVgA2VBpvGr5Lw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Clean Code\",\r\n  \"authorId\": \"b602d62a-3aa2-5c24-9920-38848b1bf4d9\",\r\n  \"isbn\": \"978013235088690\",\r\n  \"publisher\": \"Prentice Hall\",\r\n  \"publicationDate\": \"2008-08-02\",\r\n  \"edition\": \"1st\",\r\n  \"pageCount\": 464,\r\n  \"description\": \"A handbook of agile software craftsmanship\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/book-microservice/api/v1/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "book-microservice",
+                "api",
+                "v1",
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BOOKS",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU3MzU1ODcsImlhdCI6MTc4NTczMzc4NywianRpIjoidHJydGNjOmIzM2EwOTQ3LTg2YTctMWI1NC1hMTQwLTZhNmRkMTQ4MzRhMSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.WLovnrRVLevTxxWj9Q4VkdQYEABZdIHbKyuHYSi4LLtgv4VkFpqhl4P3vyC7nDRZZi0L3M6eDtbm9zI9QwMv2bI4rC6MqTdn4XtMAc5HX-RgmE-rnBSHn_-55RJla1DmHQwrIesTohXqr_ILCxy5qjcTbbIqSg0FXu2kM_RpxYhUUPh_EJN81zuvIy8iar_kDaqeOTQTO9pCfirjPhLkUE9J3esQyOirFxPe6-skdWVimC5o0yyspm4Y6oC4nCLfvreW9c7E1EkbMo9plSbaQxMDYH3egsqwwCdInVMuvzRAZyPpPHHrV18xnQDleAeRG9Msh5ixXVgA2VBpvGr5Lw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/book-microservice/api/v1/books",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "book-microservice",
+                "api",
+                "v1",
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "authorId",
+                  "value": "93aa1f88-f3bf-59d3-a64f-59992e561eb7",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "title",
+                  "value": "méxico",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET BOOK BY ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU4MDEwMjUsImlhdCI6MTc4NTc5OTIyNSwianRpIjoidHJydGNjOmJmOTdkMjc4LWQ4M2EtYTZjNy03MDFjLTg5MGY4OWYzM2ZiMyIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.lDKWT4HjE_NLqjRa0hq8e2iED6QylKDRnQ8gpjoxGo4N1p9d9MmMiDDJYEm75nA33487hz5P7D8efesCl8WfWqwqUqA3XWl3PAzobvjjpN2j73fy08tRuA9abNNrkjrVtKCkj5CZ8GxTrbDblm04f-DtS8q9Sl6EwugqgWbnQDu-EJaUOrul5W9GVKv7d_fsoBcvXWpDv_jEeX7uHEhEooCuurT-pvxy6aTg0V2O4as5xtqI2GCKDSzX97kxEiQuM2LUK0L4QkDegB6KKmPgRNNWBXQqcY03cn26FFK-kNuqJCsvUH0JSPRcjdRqq0LNNB1pO6F2vqKcMjglnFYazw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/book-microservice/api/v1/books/34359d20-6fb6-5dea-98c4-f326217f8b93",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "book-microservice",
+                "api",
+                "v1",
+                "books",
+                "34359d20-6fb6-5dea-98c4-f326217f8b93"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE BOOK",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU2NDcwMjUsImlhdCI6MTc4NTY0NjcyNSwianRpIjoidHJydGNjOjY5YTJiMDAwLTczNWMtYTVjMS1jZTk5LWMyMTFlYzM2ZDU0ZSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.PPIOSbzhVATNDiQz440An4dJiw4z9SiV8FVuSTNcZRUm7twSp2hwMhTegP1sCOWhtHrcm-MFgXdlTh3wg-cYiybRr1EtQodLG8PdI0R4PFBC-sNxDs0dG7i_haD9VziW0YrpNReaWe96Jn53YI7EQkCGW9KAG5GsKK1MqPfexXIHxqXN55Y5-EG9UGwM-5ytPSyXRe5er9Kudcfn6jQmKhekOBIkpth09oeF49vjuhTuChh7Xce1-f9mrdMZY1td0kc1YGVZ_qWIeixhLCRR86AMqfJU2Pl1sIpSc2OVy7yc8bRfbHwZli7mfRopvyYcxrs4gLXdjs3VByLN0HxPqA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/book-microservice/api/v1/books/1c5f88d7-3d7e-5ef3-b157-787d82b1b5bf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "book-microservice",
+                "api",
+                "v1",
+                "books",
+                "1c5f88d7-3d7e-5ef3-b157-787d82b1b5bf"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AUTHOR",
+      "item": [
+        {
+          "name": "SAVE AUTHOR",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU2NDcwMjUsImlhdCI6MTc4NTY0NjcyNSwianRpIjoidHJydGNjOjY5YTJiMDAwLTczNWMtYTVjMS1jZTk5LWMyMTFlYzM2ZDU0ZSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.PPIOSbzhVATNDiQz440An4dJiw4z9SiV8FVuSTNcZRUm7twSp2hwMhTegP1sCOWhtHrcm-MFgXdlTh3wg-cYiybRr1EtQodLG8PdI0R4PFBC-sNxDs0dG7i_haD9VziW0YrpNReaWe96Jn53YI7EQkCGW9KAG5GsKK1MqPfexXIHxqXN55Y5-EG9UGwM-5ytPSyXRe5er9Kudcfn6jQmKhekOBIkpth09oeF49vjuhTuChh7Xce1-f9mrdMZY1td0kc1YGVZ_qWIeixhLCRR86AMqfJU2Pl1sIpSc2OVy7yc8bRfbHwZli7mfRopvyYcxrs4gLXdjs3VByLN0HxPqA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Gabriel\",\r\n  \"lastName\": \"García Márquez\",\r\n  \"birthDate\": \"1927-03-06\",\r\n  \"nationalityId\": \"314d344b-e15f-40e0-9dbe-4769fcc9376b\",\r\n  \"photoUrl\": \"https://example.com/authors/garcia-marquez.jpg\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/author-microservice/api/v1/authors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "author-microservice",
+                "api",
+                "v1",
+                "authors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET AUTHOR BY ID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU2NDgwNzgsImlhdCI6MTc4NTY0Nzc3OCwianRpIjoidHJydGNjOjEyMTc0MzI5LTNiNDYtNzU3MS1jZTc0LTVkNTJmMGU5NTMxOCIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.uwwjE9b_032i0Qo62YPfk_6GAH6IbQsbY3kyWB-Qn76U3bKFJALlOyrWKvfzKTvrdT-sArZSLnwshrV9XSbf_KSDA8hbxOrTSPREIhOCVsnEu0HsCFV5wRKCK3r78hhYcSIwfAwNu_B6e5p95XJvbrhWsRgT2TOVae2bD6825IMQA_HAAT7yULPytYX67K3_NowAWP8bq6EjIWR6lWAX6ZP43VKiWU8ITRWmWBgpNoPdpN31UY51E5xaKMYFL8vp316UEHzW28InI2AqigDyZzKnALDM4V97Bvg0EYBJMimB0uZElLvY5O07qDQk7QaXhFQhpOTqlYJeQS_NJwhmHQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/author-microservice/api/v1/authors/93aa1f88-f3bf-59d3-a64f-59992e561eb7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "author-microservice",
+                "api",
+                "v1",
+                "authors",
+                "93aa1f88-f3bf-59d3-a64f-59992e561eb7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET ALL AUTHORS",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU2NTY2OTYsImlhdCI6MTc4NTY1NDg5NiwianRpIjoidHJydGNjOjRjNGRhODhiLTlmZWQtODE0My02ZTU5LTlhMDJmYzMxNjA2NiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.Z3GfeKZeFhnnD1v-Q6f8bRDaOPIfor2RZjGYH_X3yCvsq_NaLPFNDCxQoyadztwVCDK_KE35OJsmDukLwvsU4Y9flJgSuxsGq8R598b2uMbBUTPREwyFnVqkqXB3TN_3keS1-5ClhIYWVc8yHvAqHkACCqJCarTljh1g52nOm8HdltYoBkseUXGOObAqF-NCSIAG3z7gHl5JlE3Fe3EWQxTEY8BdP0WUhJoOISWik2dGsjQNiuF2p8YxMUumNMTPWKurGvv7Xvg-Ph-DeJhJG2SZb68sZJmbd0fsXGxWghYus4ZUGK1OTIuOV9l0OvMG0gmXLU5taokPZPnNyCIQVg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/author-microservice/api/v1/authors",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "author-microservice",
+                "api",
+                "v1",
+                "authors"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "40",
+                  "disabled": true
+                },
+                {
+                  "key": "name",
+                  "value": "pepito",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UPDATE AUTHOR",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJRVGFyZ0VkcTJSZ3IzT0U2SmFHOUpMZHdweDhuQXVyVFEwMUpBUTVzS3JJIn0.eyJleHAiOjE3ODU3MzU1ODcsImlhdCI6MTc4NTczMzc4NywianRpIjoidHJydGNjOmIzM2EwOTQ3LTg2YTctMWI1NC1hMTQwLTZhNmRkMTQ4MzRhMSIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NzA4MC9yZWFsbXMvYm9va3MiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMzZkZWNiN2QtNjQ4Yi00YTM0LWJhZWEtOGNlZmU5ZjZhOGM3IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9vay1hcGkiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtYm9va3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTkyLjE2OC42NS4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYm9vay1hcGkiLCJjbGllbnRBZGRyZXNzIjoiMTkyLjE2OC42NS4xIiwiY2xpZW50X2lkIjoiYm9vay1hcGkifQ.WLovnrRVLevTxxWj9Q4VkdQYEABZdIHbKyuHYSi4LLtgv4VkFpqhl4P3vyC7nDRZZi0L3M6eDtbm9zI9QwMv2bI4rC6MqTdn4XtMAc5HX-RgmE-rnBSHn_-55RJla1DmHQwrIesTohXqr_ILCxy5qjcTbbIqSg0FXu2kM_RpxYhUUPh_EJN81zuvIy8iar_kDaqeOTQTO9pCfirjPhLkUE9J3esQyOirFxPe6-skdWVimC5o0yyspm4Y6oC4nCLfvreW9c7E1EkbMo9plSbaQxMDYH3egsqwwCdInVMuvzRAZyPpPHHrV18xnQDleAeRG9Msh5ixXVgA2VBpvGr5Lw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"pepito\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/author-microservice/api/v1/authors/93aa1f88-f3bf-59d3-a64f-59992e561eb7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "author-microservice",
+                "api",
+                "v1",
+                "authors",
+                "93aa1f88-f3bf-59d3-a64f-59992e561eb7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AUTH",
+      "item": [
+        {
+          "name": "GET TOKEN",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "type": "text",
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                },
+                {
+                  "type": "text",
+                  "key": "client_id",
+                  "value": "book-api"
+                },
+                {
+                  "type": "text",
+                  "key": "client_secret",
+                  "value": "f0VnUvT3V1erx2YFh2IRpjBFNGbnDxhB"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:7080/realms/books/protocol/openid-connect/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "7080",
+              "path": [
+                "realms",
+                "books",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_0swm",
+      "secret": true
+    },
+    {
+      "key": "auth_secret_18cm",
+      "secret": true
+    },
+    {
+      "key": "supabase_service_role_api_key_0bmt",
+      "secret": true
+    }
+  ]
+}
